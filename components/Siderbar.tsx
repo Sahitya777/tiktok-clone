@@ -18,8 +18,8 @@ const Siderbar = () => {
       <div className='block xl:hidden m-2 ml-4 mt-3 text-xl'
         onClick={()=>setShowSidebar((prev)=>!prev)}
       >
-        {showSidebar? <ImCancelCircle/>:
-        <AiOutlineMenu/>}
+        {showSidebar? <ImCancelCircle className='cursor-pointer'/>:
+        <AiOutlineMenu className='cursor-pointer'/>}
       </div>
       {showSidebar &&(
         <div className='xl:w-400 w-20 flex flex-col justify-start mb-10 border-r-2 border-gray-100 xl:border-0 p-3'>
