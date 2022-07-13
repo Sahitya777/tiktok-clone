@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -16,6 +16,7 @@ const Detail = ({postDetails}:IProps) => {
     const [post, setPost] = useState(postDetails);
     const [playing, setplaying] = useState(false);
     const videoRef=useRef<HTMLVideoElement>(null);
+    const [isVideoMuted, setIsVideoMuted] = useState<boolean>(false);
     const onVideoClick=()=>{
         if(playing){
             videoRef?.current?.pause();
@@ -27,8 +28,13 @@ const Detail = ({postDetails}:IProps) => {
           }
     }
     console.log(post);
+    useEffect(()=>{
+        if(post &&videoRef?.current){
+            videoRef.current.muted=isVideoMuted;
+        }
+    },[post,isVideoMuted])
 
-    // if(!post) return null;
+    if(!post) return null;
   return (
     <div className='flex w-full absolute left-0 top-0 bg-white flex-wrap lg:flex-nowrap'>
     <div className='relative flex-2 w-[1000px] lg:w-9/12 flex justify-center items-center bg-blurred-img bg-no-repeat bg-cover bg-center'>
@@ -47,15 +53,26 @@ const Detail = ({postDetails}:IProps) => {
             className=' h-full cursor-pointer'
           ></video>
         </div>
-        <div className='absolute top-[45%] left-[45%] cursor-pointer'>
-            {!playing &&(
-                <button onClick={onVideoClick}>
-                    <BsFillPlayFill className='text-white text-6xl lg:text-8xl'/>
-                </button>
-            )}
-        </div>
-
+            <div className='absolute top-[45%] left-[45%] cursor-pointer'>
+                {!playing &&(
+                    <button onClick={onVideoClick}>
+                        <BsFillPlayFill className='text-white text-6xl lg:text-8xl'/>
+                    </button>
+                )}
             </div>
+        </div>
+        <div className='absolute bottom-5 right-5 lg:right-10 cursor-pointer lg:bottom-10'>
+        {isVideoMuted ? (
+                <button onClick={() => setIsVideoMuted(false)}>
+                  <HiVolumeOff className='text-white text-3xl lg:text-4xl' />
+                </button>
+              ) : (
+                <button onClick={() => setIsVideoMuted(true)}>
+                  <HiVolumeUp className='text-white text-3xl lg:text-4xl' />
+                </button>
+              )}         
+
+        </div>
         </div>
     </div>
   )
