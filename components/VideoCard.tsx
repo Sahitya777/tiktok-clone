@@ -56,18 +56,18 @@ const VideoCard:NextPage<Iprops> = ({post}) => {
           <div>
             <Link href="/">
               <div className='flex items-center gap-2'>
-                <p className='flex items-center gap-2 md:tyext-md font-bold text-primary'>
+                <p className='flex items-center gap-2 md:tyext-md font-bold text-primary lg:mt-4 md:mt-4 sm:mt-2'>
                   {post.postedBy.userName}{`
                   `}
                   <GoVerified className='text-blue-400 text-md'/>
                 </p>
-                <p className='capitalize font-medium text-gray-500 hidden md:block'>{post.postedBy.userName}</p>
+                <p className='capitalize font-medium text-gray-500 hidden md:block mt-4'>{post.postedBy.userName}</p>
               </div>
             </Link>
           </div>
         </div>
       </div>
-      <div className='lg:ml-20 flex gap-4 relative'>
+      <div className='lg:ml-10 flex gap-4 relative mt-4'>
         <div
         onMouseEnter={()=>setisHover(true)}
         onMouseLeave={()=>setisHover(false)}

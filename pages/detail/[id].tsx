@@ -54,7 +54,7 @@ const Detail = ({postDetails}:IProps) => {
       }
     }
 
-    const addComment=async(e)=>{
+    const addComment=async({e}:any)=>{
       e.preventDefault();
       if(userProfile && comment){
         setIsPostingComment(true)
@@ -80,7 +80,7 @@ const Detail = ({postDetails}:IProps) => {
         </p>
       </div>
       <div className='relative'>
-        <div className='lg:h-[100vh] h-[60vh]'>
+        <div className='lg:h-[100vh] h-[59vh]'>
           <video
             ref={videoRef}
             onClick={onVideoClick}
