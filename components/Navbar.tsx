@@ -84,6 +84,7 @@ const Navbar = () => {
                 </div>
               </Link>
             )}
+            
               <button
                 type='button'
                 className=' border-2 p-2 rounded-full cursor-pointer outline-none shadow-md'
